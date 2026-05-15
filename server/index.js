@@ -13,7 +13,7 @@ dotenv.config();
 app.use(express.json());
 
 
-app.get("/", (req, res) => {
+app.get("/api/health", (req, res) => {
   res.send("Welcome to the Todo List API");
 });
 

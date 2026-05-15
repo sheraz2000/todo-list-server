@@ -8,14 +8,14 @@ const app = express();
 
 dotenv.config();
 
-const allowedOrigins = (process.env.CORS_ORIGIN || "")                                                
-  .split(",")
-  .map((origin) => origin.trim())
-  .filter(Boolean);
 
 //  Middleware
 app.use(express.json());
 
+
+app.get("/", (req, res) => {
+  res.send("Welcome to the Todo List API");
+});
 
 // Routes
 app.use("/api/user", userRoute);

@@ -11,12 +11,20 @@ dotenv.config();
 // Middleware
 app.use(express.json());
 
-// CORS - add this line ✅
+// // CORS - add this line ✅
+// app.use(cors({
+//   origin: ['http://localhost:3000', 'http://localhost:3001'],
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   credentials: true
+// }));
+
+
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001'],
+  origin: 'https://client-2fmv.vercel.app',  // your frontend URL
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
+
 
 app.get("/api/health", (req, res) => {
   res.send("Welcome to the Todo List API");

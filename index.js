@@ -9,7 +9,13 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: ['https://client-2fmv.vercel.app', 'http://localhost:3000', 'http://localhost:3001'],
+  origin: [
+    'https://client-2fmv.vercel.app',
+    'https://client-2fmv-git-main-sheraz2.vercel.app',
+    'https://client-lilac-mu-64.vercel.app',
+    'http://localhost:3000',
+    'http://localhost:3001'
+  ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true

@@ -4,40 +4,30 @@ import dotenv from "dotenv";
 import userRoute from "./routes/userroutes.js";
 import cors from "cors";
 
-const app = express();
-
 dotenv.config();
 
-// Middleware
-app.use(express.json());
-
-// // CORS - add this line ✅
-// app.use(cors({
-//   origin: ['http://localhost:3000', 'http://localhost:3001'],
-//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//   credentials: true
-// }));
-
+const app = express();
 
 app.use(cors({
-  origin: 'https://client-2fmv.vercel.app',  // your frontend URL
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  origin: ['https://client-2fmv.vercel.app', 'http://localhost:3000', 'http://localhost:3001'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
 
+app.options('*', cors());
+
+app.use(express.json());
 
 app.get("/api/health", (req, res) => {
   res.send("Welcome to the Todo List API");
 });
 
-// Routes
 app.use("/api/user", userRoute);
 
-// PORT
 const port = process.env.PORT || 8000;
 const mongoUrl = process.env.MONGO_URL;
 
-// DB CONNECT
 mongoose
   .connect(mongoUrl)
   .then(() => {

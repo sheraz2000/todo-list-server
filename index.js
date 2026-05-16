@@ -8,10 +8,15 @@ const app = express();
 
 dotenv.config();
 
-
-//  Middleware
+// Middleware
 app.use(express.json());
 
+// CORS - add this line ✅
+app.use(cors({
+  origin: ['http://localhost:3000', 'http://localhost:3001'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 
 app.get("/api/health", (req, res) => {
   res.send("Welcome to the Todo List API");
@@ -29,7 +34,6 @@ mongoose
   .connect(mongoUrl)
   .then(() => {
     console.log("DB connected successfully");
-
     app.listen(port, () => {
       console.log(`Server running on port ${port}`);
     });
